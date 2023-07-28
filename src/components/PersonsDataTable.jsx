@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import DataTable from "react-data-table-component";
 
+
 const PersonsDataTable = () => {
   const path = "https://crudrelational.up.railway.app/crudrelational";
   const [persons, setPersons] = useState([]);
@@ -82,22 +83,26 @@ const PersonsDataTable = () => {
   return (
     <main className="main-container">
       <div className="main-title">
-        <h2>PERSON LIST</h2>
+        <h2 className="" >PERSON LIST</h2>
       </div>
 
-      <div className="table-responsive">
-        <div className="textx-end d-flex justify-content-end align-items-center pb-5">
+      <div className="w-11/12 table-responsive d-flex justify-center align-items-center flex-column ">
+
+        <div className="text-end flex justify-content-center align-items-center pb-5">
           <label htmlFor="search" className="p-2">Search:</label>
           <input type="text" className="p-2 w-50" name="search" onChange={handleFilter}/>
         </div>
-        <DataTable 
-          columns={columns}
-          data={personsFilter}
-          pagination // paginación
-          paginationComponentOptions={paginationOptions}
-          fixedHeader
-          fixedHeaderScrollHeight="600px"
-        />
+
+        <div className="w-100">
+          <DataTable 
+            columns={columns}
+            data={personsFilter}
+            pagination // paginación
+            paginationComponentOptions={paginationOptions}
+            fixedHeader
+            fixedHeaderScrollHeight="600px"
+          />
+        </div>
       </div>
 
 

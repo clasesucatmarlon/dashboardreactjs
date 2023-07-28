@@ -1,12 +1,12 @@
 import Normalize from 'react-normalize';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import {useState} from 'react'
-import './assets/css/App.css'
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import { Routes, Route } from 'react-router-dom';
-import PersonsDataTable from './components/PersonsDataTable';
 import Reports from './components/Reports';
+// import PersonsDataTable from './components/PersonsDataTable';
+import PersonsDataANTD from './components/PersonsDataANTD';
+// import PersonsBootstrap from './components/PersonsBootstrap';
 
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
         <Header openSidebar={openSidebar} showMenu={showMenu}/>
         <Routes>
             <Route path="/" element={<Sidebar openSidebar={openSidebar} showMenu={showMenu} classMenu={classMenu}/>} />
-            <Route path="persons" element={<PersonsDataTable />} />
+            <Route path="persons" element={<PersonsDataANTD />} />
             <Route path="reports" element={<Reports />} />
         </Routes>
         <Sidebar openSidebar={openSidebar} showMenu={showMenu} classMenu={classMenu}/>
