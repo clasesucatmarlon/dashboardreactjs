@@ -256,8 +256,17 @@ const PersonsDataANTD = () => {
       })
   }
 
+  const [idNumbersPages, setIdNumbersPages] = useState(1);
+ 
+  
+  const handlePages = (e) => {
+    const optionSelected = e.target.value;
+    console.log(typeof parseInt(optionSelected))
+    setIdNumbersPages(parseInt(optionSelected))
+  }
+
   return (
-    <main className="main-container bg-[#f0f0f0] flex flex-col justify-center justify-items-center">
+    <main className="main-container bg-[#f0f0f0] flex flex-col ">
       <div className="main-title">
         <h2 className="" >PERSON LIST</h2>
       </div>
@@ -270,6 +279,22 @@ const PersonsDataANTD = () => {
             <label htmlFor="search" className="font-bold mr-2">Search:</label>
             <input type="text" className="p-2 text-black" name="search" onChange={handleFilter} />
           </div>
+
+          {/* SELECT FOR PAGES */}
+          <div className="flex align-items-center">
+            <label htmlFor="search" className="font-bold mr-2 text-white">Cantidad de pág:</label>
+            <select name="pages" id="selPages" className="form-select" onClick={handlePages}> 
+            {
+              [5, 10, 20].map((numPages, index) => (
+                <option key={index} value={numPages}>{numPages}</option>
+              ))
+
+            }
+            </select>
+          </div>
+
+
+
           {/* ADD BUTTON */}
           <div className=''>
             <button onClick={() => openModal(1)} className='btn btn-primary' data-bs-toggle='modal' data-bs-target='#modalPersons'>
@@ -279,14 +304,15 @@ const PersonsDataANTD = () => {
         </div>
 
         {/* TABLE */}
-        <div className="w-11/12 flex justify-center align-items-center">
+        <div className="w-11/12  table-responsive">
           <Table
             columns={columns}
             dataSource={personsFilter}
             bordered='true'
             loading={loading}
             size="small"
-            pagination={{pageSize: 5}}
+            pagination={{pageSize: idNumbersPages}}
+            className="w-full"
           /> 
         </div>
       </div>
