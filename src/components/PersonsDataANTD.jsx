@@ -256,8 +256,7 @@ const PersonsDataANTD = () => {
       })
   }
 
-  const [idNumbersPages, setIdNumbersPages] = useState(1);
- 
+  const [idNumbersPages, setIdNumbersPages] = useState(3);
   
   const handlePages = (e) => {
     const optionSelected = e.target.value;
@@ -273,7 +272,7 @@ const PersonsDataANTD = () => {
 
       <div className="flex flex-column align-items-center table-responsive p-6 ">
 
-        <div className="flex justify-between bg-[#263043] border p-2 mb-4 text-black w-11/12 text-white">
+        <div className="flex justify-between bg-[#263043] border p-2 mb-5 text-black w-11/12 text-white">
           {/* FILTER */}
           <div className="flex align-items-center">
             <label htmlFor="search" className="font-bold mr-2">Search:</label>
@@ -281,19 +280,17 @@ const PersonsDataANTD = () => {
           </div>
 
           {/* SELECT FOR PAGES */}
-          <div className="flex align-items-center">
-            <label htmlFor="search" className="font-bold mr-2 text-white">Cantidad de pág:</label>
-            <select name="pages" id="selPages" className="form-select" onClick={handlePages}> 
+          <div className="flex justify-between align-items-center">
+            {/* <label htmlFor="elementsByPage" className="font-bold mr-2 text-white">Cantidad de pág:</label> */}
+            <select name="elementsByPage" id="selPages" className="form-select" onClick={handlePages}> 
+            <option value={3}>Elements by page</option>
             {
-              [5, 10, 20].map((numPages, index) => (
+              [3, 5, 10, 20].map((numPages, index) => (
                 <option key={index} value={numPages}>{numPages}</option>
               ))
-
             }
             </select>
           </div>
-
-
 
           {/* ADD BUTTON */}
           <div className=''>
@@ -304,15 +301,18 @@ const PersonsDataANTD = () => {
         </div>
 
         {/* TABLE */}
-        <div className="w-11/12  table-responsive">
+        <div className="w-11/12 table-responsive">
           <Table
             columns={columns}
             dataSource={personsFilter}
             bordered='true'
             loading={loading}
             size="small"
-            pagination={{pageSize: idNumbersPages}}
+            pagination={{pageSize: idNumbersPages, position: ["bottomCenter"], onChange: () => {
+              <a>casa</a>
+            }}}
             className="w-full"
+            sticky="true"
           /> 
         </div>
       </div>
