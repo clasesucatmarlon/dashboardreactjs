@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Table } from 'antd';
+import { Table, Rate } from 'antd';
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { showAlert } from "../utilities/showAlerts";
@@ -113,6 +113,16 @@ const PersonsDataANTD = () => {
       dataIndex: 'email',
       key: 'email',
       sorter: (a, b) => a.email.length - b.email.length,
+    },
+    {
+      title: 'Rate',
+      dataIndex: '',
+      align: "center",
+      render: (_, record) => (
+        <div className="flex justify-center">
+          <Rate allowHalf defaultValue={2.5} />
+        </div>
+      )
     },
     {
       title: 'Actions',
